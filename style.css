@@ -1,0 +1,539 @@
+/* variables */
+:root{
+    --primary: #FFC636;
+    --secondary: #0A0B5B;
+}/* select root element {html tag} inside the doc, we can use these variables in selectors which target any of the items inside the html doc */
+
+/* reset */
+body,p,a,ul,li{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none; 
+}
+
+html{
+    overflow-x: hidden;
+}
+/* base styles */
+body{
+    background: var(--secondary);
+    overflow-x: hidden;/* dissalow user to scroll for image horizontally */
+    font-family: 'Rubik Regular';
+}
+
+.button{
+    background: none;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.6);
+    display: inline-block;
+}
+.button:hover {
+    color: #222;
+    background: var(--primary);
+}
+
+input, textarea {
+    background: rgba(255,255,255, 0.05);
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 2px solid #9893D8;
+    color: #f2f2f2;
+}
+
+/* fonts */
+/* ONLY WAY WE CAN USE OUR OWN CUSTOM FONTS */
+@font-face {
+    font-family: 'Rubik Regular';
+    src: url('./assets/fonts/Rubik-Regular.ttf');
+}
+
+
+/* Modifying our font for all headers */
+h1, h2 ,h3, h4{
+    color: #DDDBFF;
+    font-weight: normal;
+}
+
+/* Modifying our font for these elements*/
+p,a,li{
+    color: #9893D8;
+}
+
+h1,h3{
+    font-size: 1.2em;
+}
+
+h2{
+    font-size: 1.6em;
+}
+
+h4{
+    font-size: 1.1em;
+}
+
+.leading{
+    font-size: 1.1em;
+}
+
+
+/* STARTING POINT: mobile styles */
+.grid{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+}
+
+.site-nav{
+    margin: 0 20px;
+}
+
+.nav-links{
+    /* display: none; */
+    position: fixed;
+    right: 0px;
+    height: 100vh;
+    background-color: var(--primary);
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    text-align: center;
+    width: 100%;
+    /* move container off the screen as a start position */
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.nav-active{
+    transform: translateX(0%);
+}
+
+.nav-links li{
+    opacity: 0;
+    overflow: hidden;
+}
+
+.nav-links li:nth-child(1){
+    grid-row: 3/4;
+}
+
+.nav-links li:nth-child(2){
+    grid-row: 4/5;
+}
+
+.nav-links li:nth-child(3){
+    grid-row: 5/6;
+}
+
+.nav-links li a{
+    color: white;
+    font-size: 1.8em;
+    padding: 20px;
+}
+
+.nav-links li a:hover{
+    cursor: pointer;
+    color: #9893D8;
+}
+
+
+.site-nav h1{
+    grid-column: 1/4;
+    grid-row: 1;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary);
+    z-index: 2;
+}
+
+#welcome {
+    padding: 0 20px 20px 20px;
+}
+
+.welcome-text{
+    grid-column: 1/6;
+}
+
+.welcome-image{
+    grid-column: 6/9;
+}
+
+.welcome-image img{
+    width: 200%;
+}
+
+.welcome-text a{
+    margin: 20px 0;
+}
+
+#portfolio{
+    background: url(assets/square_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding: 30px 20px;
+}
+
+#portfolio h3{
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.projects a{
+    grid-column: 1/9;
+    margin: 20px 0;
+    display: flex;
+}
+
+#skills{
+    padding: 30px 20px;
+    background: #07083E;
+}
+
+#skills h3{
+    text-align: center;
+}
+
+#skills ul{
+    margin: 40px 0px;
+}
+
+#skills li{
+    padding: 10px;
+    background: rgba(0,0,0, 0.2);
+    grid-column: span 4;
+    text-align: center;
+}
+
+#skills img{
+    height: 80px;
+    margin: 10px auto;
+}
+
+#contact{
+    padding: 30px 20px;
+    background: #080936;
+}
+
+#contact h3, #contact p {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#contact form{
+    width: 80%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#contact input, #contact textarea {
+    width: 80%;
+    margin: 10px 0;
+}
+
+#contact .button{
+    margin-top: 10px;
+}
+
+footer{
+    padding: 30px 20px;
+    background-color: #14153D;
+    background-image: url(assets/footer_image.png);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+footer .copyright {
+    grid-column: 1/3;
+    font-size: 0.8em;
+}
+
+footer .social{
+    grid-column: 7/9;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+footer li {
+    margin: 0 6px;
+}
+
+footer img{
+    width: 20px;
+
+}
+
+.projects a * { /* grab every single element inside that anchor tag */
+    margin: 0 20px;
+    max-width: 40%;
+    align-self: center;
+}
+
+.projects h4{
+    color: #9994F7;
+}
+
+/* for menu when opened */
+.fixedPosition{
+    position: fixed
+}
+
+.burger{
+    grid-column: 8/9;
+    z-index: 2;
+    justify-self: end;
+}
+
+.burger:hover{
+    cursor: pointer;
+}
+
+.burger .line1{
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    margin-top: 23px;
+    border-radius: 3px;
+
+    /* ANIMATED BURGER */
+    transition: all 0.5s ease-in-out;
+}
+
+.burger .line2{
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 3px;
+
+    /* ANIMATED BURGER */
+    transition: all 0.5s ease-in-out;
+}
+
+.burger .line3{
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 3px;
+
+    /* ANIMATED BURGER */
+    transition: all 0.5s ease-in-out;
+}
+
+/* ANIMATED BURGER */
+    .is-active .line2{
+        opacity: 0;
+    }
+
+    .is-active .line1{
+        width: 35px !important;
+        transform: translateX(3px) translateY(10px) rotate(45deg);
+    }
+
+    .is-active .line3{
+        width: 35px !important;
+        transform: translateX(2px) translateY(-6px) rotate(-45deg);
+        
+    }
+/* END ---- ANIMATED BURGER */
+
+
+
+@keyframes navLinkFade{
+    from{
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* NEXT POINT: small tablet styles */
+@media screen and (min-width: 620px){ /* device that has a width of at least 620px in the viewport (device browser) we will show these styles. */
+    
+    .welcome-text{
+        grid-column: 1/5;
+    }
+
+    .welcome-image{
+        grid-column: 5/9;
+    }
+
+    .welcome-image img{
+        width: 100%;
+    }
+
+    .projects{
+        margin-top: 40px;
+    }
+
+    .projects a{
+        grid-column: span 4;
+        display: block;
+        margin: 20px 0;
+    }
+
+    .projects a:last-child{
+        grid-column: 3/7;
+    }
+
+    .projects a *{
+        margin: 10px;
+        max-width: 60%;
+        margin: 10px 20%;
+    }
+
+    .projects h4{
+        text-align: center;
+    }
+
+    #skills{
+        padding: 30px 100px
+    }
+
+    .footer{
+        background-size: 20%;
+    }
+    
+
+}
+
+/* NEXT POINT: larget tablets & laptops */
+@media screen and (min-width: 960px){ /* device that has a width of at least 960px in the viewport (device browser) we will show these styles.  */
+    body{
+        font-size: 18px;
+    }
+
+    .grid{
+        width: 100%;
+        max-width: 1060px;
+        margin: 0 auto;
+        /* remove extra padding */
+        box-sizing: border-box;
+    }
+
+    .leading{
+        margin: 20px 0;
+    }
+
+    .site-nav{
+        padding: 0 20px;
+    }
+
+    .site-nav h1{
+        grid-column: 1/3;
+    }
+
+    .burger{
+        all: unset;
+        display: none;
+    }
+
+    .nav-links{
+        /*Reset properties*/
+        all: unset;
+        display: flex;
+        font-size: 0.5em;
+        grid-column: 6/9;
+        justify-content: flex-end;
+        align-self: center;
+    }
+
+    .nav-links li{
+        all: unset;
+    }
+
+    .nav-links a{
+        all: unset;
+        color:  #9893D8 !important;
+    }
+
+    .welcome-text{
+        align-self: center;
+    }
+    
+    #welcome{
+        padding-bottom: 40px;
+    }
+
+    .projects a:nth-child(1){
+        grid-column: 2/4;
+    }
+
+    .projects a:nth-child(2){
+        grid-column: 4/6;
+        padding-top: 140px;
+    }
+
+    .projects a:nth-child(3){
+        grid-column: 6/8;
+    }
+
+    .projects a *{
+        max-width: 80%;
+        margin: 10px 10%;
+    }
+
+    #skills{
+        padding: 30px 20px;
+    }
+
+    #skills ul{
+        margin: 40px auto;
+    }
+
+    #skills li{
+        grid-column: span 2;
+    }
+    footer{
+        padding: 40px 20px;
+        background-size: 25%;
+    }
+
+}
+
+/* LAST POINT: desktop styles */
+@media screen and (min-width: 1200px){ /* device that has a width of at least 1200px in the viewport (device browser) we will show these styles.  */
+    body{
+        font-size: 20px;
+    }
+
+    #welcome, #porfolio, #skills, #contact{
+        padding: 90px 0;
+    }
+
+    .projects a:nth-child(1){
+        grid-column: 1/3;
+    }
+
+    .projects a:nth-child(3){
+        grid-column: 7/9;
+    }
+
+    .projects a *{
+        max-width: 100%;
+        margin: 30px 0;
+    }
+
+    footer{
+        padding: 80px 0;
+        background-size: 30%;
+
+    }
+
+    footer img{
+        width: 30px;
+    }
+
+}
